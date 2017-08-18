@@ -1,18 +1,21 @@
 <p align="center">
 <a href="http://yinshan.me">
-<img src="http://yinshan.me/img/logo.png">
+<img src="http://yinshan.me/img/logo.png" alt="Powered By Chichoyi">
 </a>
 </p>
 
-<p align="center">🎈 chicho is an open source web built with Laravel <a href="http://yinshan.me">http://yinshan.me</a></p>
+<p align="center">
+🎈 chicho is an open source web built with Laravel 
 
+welcome to visit my website : <a href="http://yinshan.me">http://yinshan.me</a>
+</p>
 
-## chicho introduction
+## Chicho introduction
 
 Walking and walking, always meeting
 
 
-## chicho function
+## Chicho function
 
  - just set up (2017-08-18)
  - I will build chicho more and more powerfull
@@ -52,6 +55,6 @@ php artisan key:generate
 ## Contributors
 - chichoyi
 
-## contact me
+## Contact me
 - wechat:cys843755799
 - QQ:843755799
