@@ -19,6 +19,6 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::post('get_data', 'SpiderController@getJinData')->name('get_data');
-Route::get('show', function (){
-    return view('show');
+Route::get('chicho', function (){
+    return view('chicho');
 });
