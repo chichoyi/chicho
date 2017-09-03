@@ -16,13 +16,13 @@
 
 <div id="container">
     <div id="avatar">
-        <img src="https://pigjian.com/images/default_avatar.png" alt="chicho">
+        <img src="{{ asset('img/logo.png') }}" alt="chicho">
     </div>
     <div id="motto">
-        Nothing is impossible
+        There never a decline in full bloom of a blue lotus.
     </div>
     <div id="nav">
-        <a href="http://www.baidu.com">Blog</a>
+        <a href="{{ route('blog') }}">Blog</a>
         <a href="http://www.baidu.com">Share</a>
         <a href="http://www.baidu.com">Me</a>
         <a href="http://www.baidu.com">Github</a>

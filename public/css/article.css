@@ -1,0 +1,73 @@
+
+#cc-mobile-header>h3,#cc-mobile-header>h4,.art-info{
+	overflow: hidden;
+	text-overflow : ellipsis;
+	display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    word-break: break-all;
+    margin-bottom: 20px;
+}
+.art-info{
+	font-size: 14px;
+}
+
+#blog-header{
+	width: 100%;
+	height: 50px;
+}
+#cc-mobile-header{
+	display: block;
+	width: 100%;
+	height: 220px;
+	background-color: #5f87c2;
+	color: #fff;
+	text-align: center;
+	padding: 10px 8px 0;
+	font-size: 26px;
+}
+#article-content,#art-operation{
+	width: 60%;
+	margin: 0 auto;
+	padding: 10px;
+}
+.discuss{
+	font-size: 10px;
+	color: #7F8C8D;
+}
+.reply-btn{
+	background: none;
+	border: none;
+}
+.reply-btn:focus{ 
+	outline: none; 
+} 
+.img-circle{
+	width: 64px;
+	height: 64px;
+}
+.show-user-img{
+	float: left;
+	width: 64px;
+	display: inherit;
+    vertical-align: top;
+}
+.margin-80{
+	margin-left: 80px;
+}
+
+@media (max-width: 920px) {
+
+#article-content,#art-operation{
+	width: 100%;
+	padding: 10px;
+	overflow: hidden;
+}
+.show-user-img{
+	display: none;
+}
+.margin-80{
+	margin-left: 0;
+}
+
+}

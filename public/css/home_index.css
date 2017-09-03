@@ -29,9 +29,9 @@ canvas {
     border-radius: 100px;
 }
 #motto{
-    height: 35px;
+    /*height: 35px;*/
     text-align: center;
-    margin: 20px auto;
+    margin: 40px auto;
     font-size: 24px;
     color: #5f87c2;
 }

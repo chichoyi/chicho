@@ -19,6 +19,13 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::post('get_data', 'SpiderController@getJinData')->name('get_data');
+
 Route::get('chicho', function (){
     return view('chicho');
 });
+Route::get('blog', function (){
+    return view('blog');
+})->name('blog');
+Route::get('article', function (){
+    return view('article');
+})->name('article');
