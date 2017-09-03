@@ -16,7 +16,7 @@ class CreateArticleCommentTable extends Migration
         Schema::create('article_comment', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
-            //a_id,u_id,comment,status,create_time
+            //a_id,u_id,comment,status,create_time,commentable_type
         });
     }
 
