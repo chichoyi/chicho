@@ -1,0 +1,146 @@
+#persoanl{
+	width: 60%;
+	height: 160px;
+	margin: 0 auto;
+}
+#avatar{
+	width: 30%;
+	text-align: center;
+	padding: 20px 0;
+	float: left;
+}
+#avatar>img{
+	border-radius: 100px;
+	width: 120px;
+}
+#persoanl-info{
+	width: 70%;
+	height: 160px;
+	float: left;
+	text-align: left;
+	padding: 20px 0;
+	color: #fff;
+}
+.persoanl-name,.persoanl-motto,.edit-btn{
+	height: 33.3%;
+	line-height: 39px;
+	overflow: hidden;
+	text-overflow : ellipsis;
+	display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    word-break: break-all;
+}
+.persoanl-name{
+	font-size: 26px;
+	font-weight: bold;
+}
+.persoanl-motto{
+	font-size: 20px;
+}
+
+/*个人设置 start*/
+.persoanl-setting{
+	width: 60%;
+	height: 400px;
+	margin: 0 auto;
+	padding: 20px;
+}
+.set-notify{
+	width: 45%;
+	float: left;
+}
+.apply-write{
+	width: 45%;
+	float: right;
+}
+
+/*个人设置 start*/
+
+@media (max-width: 800px) {
+#banner{
+	height: 340px;
+}
+#persoanl{
+	width: 100%;
+	height: 340px;
+	margin: 0 auto;
+}
+#avatar{
+	width: 100%;
+	text-align: center;
+	padding: 20px 0;
+}
+#avatar>img{
+	border-radius: 100px;
+	width: 120px;
+}
+#persoanl-info{
+	width: 100%;
+	height: 180px;
+	padding: 0 20px;
+	color: #fff;
+	text-align: center;
+}
+.persoanl-motto{
+	height: 35%;
+	font-size: 18px;
+	line-height: 30px;
+	overflow: hidden;
+	text-overflow : ellipsis;
+	display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    word-break: break-all;
+}
+.persoanl-name{
+	height: 20%;
+	font-size: 26px;
+	font-weight: bold;
+}
+
+.edit-btn{
+	height: 24%;
+}
+
+/*个人设置 start*/
+.persoanl-setting{
+	width: 100%;
+	height: 550px;
+	margin: 0 auto;
+}
+.set-notify,.apply-write{
+	width: 100%;
+}
+/*个人设置 start*/
+
+
+}
+
+@media (max-width:1330px ) {
+
+}
+@media (max-width:1000px ) {
+#persoanl{
+	width: 80%;
+}
+
+/*个人设置 start*/
+.persoanl-setting{
+	width: 100%;
+	height: 550px;
+	margin: 0 auto;
+}
+.set-notify,.apply-write{
+	width: 100%;
+}
+/*个人设置 start*/
+
+}
+
+@media (max-width:950px ) {
+#persoanl{
+	width: 80%;
+}
+}
+

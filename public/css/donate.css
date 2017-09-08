@@ -1,0 +1,45 @@
+body{
+	background-color: #f1f1f1;
+}
+#donate{
+	width: 60%;
+	margin: 0 auto;
+	text-align: center;
+	padding-bottom: 20px;
+}
+#donate>img{
+	margin-top: 20px;
+	margin-right: 15px;
+}
+
+@media (max-width: 800px) {
+
+#donate{
+	width: 100%;
+	margin: 0 auto;
+	text-align: center;
+}
+#donate>img{
+	margin-top: 20px;
+}
+
+
+}
+
+@media (max-width:1330px ) {
+ #article-group{
+	width: 80%;
+}
+}
+@media (max-width:1000px ) {
+ #article-group{
+	width: 90%;
+}
+}
+
+@media (max-width:950px ) {
+#article-group{
+	width: 100%;
+}
+}
+

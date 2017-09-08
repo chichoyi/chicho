@@ -29,3 +29,12 @@ Route::get('blog', function (){
 Route::get('article', function (){
     return view('article');
 })->name('article');
+Route::get('donate', function (){
+    return view('donate');
+})->name('donate');
+Route::get('edit', function (){
+    return view('edit_personal');
+})->name('edit');
+Route::get('personal', function (){
+    return view('personal');
+})->name('personal');

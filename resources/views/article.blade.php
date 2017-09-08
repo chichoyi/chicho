@@ -1,65 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>blog</title>
-    <link href="{{ asset('css/amazeui.min.css') }}" rel="stylesheet" >
-    <link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet" >
-    <link href="{{ asset('css/common.css') }}" rel="stylesheet">
+@extends('layouts.chicho-app')
+
+@section('child-css')
     <link href="{{ asset('css/article.css') }}" rel="stylesheet">
-    <script src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
-    <script src="{{ asset('js/bootstrap.js') }}"></script>
-</head>
-<body>
+    <link href="{{ asset('css/amazeui.min.css') }}" rel="stylesheet" >
+@endsection
 
-<div id="container">
-
-    <!-- pc header nav-->
-    <div id="blog-header">
-        <div id="blog-nav">
-            <div id="left-nav">
-                <div class="item-nav"><a href="#">首页</a></div>
-                <div class="item-nav"><a href="#">文章</a></div>
-                <div class="item-nav"><a href="#">标签</a></div>
-                <div class="item-nav"><a href="#">分享</a></div>
-            </div>
-            <div id="right-nav">
-                <div class="item-nav"><a href="#">注册</a></div>
-                <div class="item-nav"><a href="#">登录</a></div>
-                <div class="search"><input type="text" placeholder="search"></div>
-            </div>
-        </div>
-    </div>
-
-    <!-- mobile nav -->
-    <nav class="navbar navbar-default" id="mobile-nav" role="navigation">
-        <div class="container-fluid">
-            <div class="navbar-header" id="mobile-header">
-                <button id="cc-button-nav" type="button" class="navbar-toggle" data-toggle="collapse"
-                        data-target="#chicho-navbar-collapse">
-                    <span class="icon-bar" style="background-color: #fff;"></span>
-                    <span class="icon-bar" style="background-color: #fff;"></span>
-                    <span class="icon-bar" style="background-color: #fff;"></span>
-                </button>
-                <a class="navbar-brand" style="color: #fff;" href="#">
-                    <span class="glyphicon glyphicon-chevron-left" style="font-size: 10px;"></span>
-                </a>
-            </div>
-            <div class="collapse navbar-collapse" id="chicho-navbar-collapse">
-                <ul class="nav navbar-nav">
-                    <li><a href="#" style="color: #fff;">首页</a></li>
-                    <li><a href="#" style="color: #fff;">文章</a></li>
-                    <li><a href="#" style="color: #fff;">标签 </a></li>
-                    <li><a href="#" style="color: #fff;">分享 </a></li>
-                    <li><a href="#" style="color: #fff;">登录 </a></li>
-                    <li><a href="#" style="color: #fff;">注册 </a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-
-    <!-- mobile header -->
+@section('banner')
     <div id="cc-mobile-header">
         <h3>基于 Weui.js 的地区选择器 weui-distpicker</h3>
         <h4>基于 Weui.js 的地区选择器 weui-distpicker基于 Weui.js 的地区选择器 weui-distpicker</h4>
@@ -69,8 +15,9 @@
             <span class="glyphicon glyphicon-tag"></span>   composer , vue , laravel
         </div>
     </div>
+@endsection
 
-    <!-- article content start -->
+@section('content')
     <div id="article-content">
 
         <p class="text-center">
@@ -143,21 +90,42 @@
 
         <!-- 展示评论 start -->
         <p style="margin-top: 15px;"><strong>评论：</strong></p>
+        <div class="show-comment-group">
 
+            <div class="show-user-img">
+                <img class="img-circle" src="https://pig-storage.b0.upaiyun.com/avatar/2017/05/26/p10KIqKGuCt1FFEq3bFPtgj4Etat2816Dd8IJPVz.jpg" alt="">
+            </div>
 
-        <div class="show-user-img">
-            <img class="img-circle" src="https://pig-storage.b0.upaiyun.com/avatar/2017/05/26/p10KIqKGuCt1FFEq3bFPtgj4Etat2816Dd8IJPVz.jpg" alt="">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        <div class="discuss">
+                            <span class="glyphicon glyphicon-user"></span> <span class="username">chicho</span>
+                            <span class="glyphicon glyphicon-time" style="margin-left: 20px;"></span>  两天前
+                            <button class="pull-right reply-btn" onclick="
+                                    $('#comment').val('@'+$(this).parent().children('.username').text()+' ');
+                                    ">
+                                <span class="am-icon-reply"></span>
+                            </button>
+                        </div>
+                    </h3>
+                </div>
+                <div class="panel-body">
+                    我是一条评论
+                </div>
+            </div>
+
         </div>
 
-        <div class="panel panel-default margin-80">
+        <div class="panel panel-default">
             <div class="panel-heading">
                 <h3 class="panel-title">
                     <div class="discuss">
-                        <span class="glyphicon glyphicon-user"></span> <span class="username">chicho</span>
+                        <span class="glyphicon glyphicon-user"></span> <span class="username">chicho1</span>
                         <span class="glyphicon glyphicon-time" style="margin-left: 20px;"></span>  两天前
                         <button class="pull-right reply-btn" onclick="
-			        		$('#comment').val('@'+$(this).parent().children('.username').text()+' ');
-			        		">
+                                $('#comment').val('@'+$(this).parent().children('.username').text()+' ');
+                                ">
                             <span class="am-icon-reply"></span>
                         </button>
                     </div>
@@ -167,30 +135,6 @@
                 我是一条评论
             </div>
         </div>
-
-        <div class="show-user-img">
-            <img class="img-circle" src="https://pig-storage.b0.upaiyun.com/avatar/2017/05/26/p10KIqKGuCt1FFEq3bFPtgj4Etat2816Dd8IJPVz.jpg" alt="">
-        </div>
-
-        <div class="panel panel-default margin-80">
-            <div class="panel-heading">
-                <h3 class="panel-title">
-                    <div class="discuss">
-                        <span class="glyphicon glyphicon-user"></span> <span class="username">chicho</span>
-                        <span class="glyphicon glyphicon-time" style="margin-left: 20px;"></span>  两天前
-                        <button class="pull-right reply-btn" onclick="
-			        		$('#comment').val('@'+$(this).parent().children('.username').text()+' ');
-			        		">
-                            <span class="am-icon-reply"></span>
-                        </button>
-                    </div>
-                </h3>
-            </div>
-            <div class="panel-body">
-                我是一条评论
-            </div>
-        </div>
-
         <!-- 展示评论 end -->
 
         <!-- comment start -->
@@ -205,28 +149,4 @@
         <!-- comment end -->
 
     </div>
-    <!-- operation end -->
-
-    <!-- footer -->
-    <div id="footer">
-        <div class="connect">
-            <a href="#"><span class="glyphicon glyphicon-home" style="color: #fff;"></span></a>
-
-        </div>
-
-        <div class="link">
-            <a href="#">友情链接</a>
-            <a href="#">关于我</a>
-        </div>
-
-        <div class="for-record">
-            @copy chicho 2017 粤ICP备16020344号-1
-        </div>
-
-    </div>
-
-</div>
-
-
-</body>
-</html>
+@endsection

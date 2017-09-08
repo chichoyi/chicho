@@ -23,7 +23,7 @@
 	background-color: #5f87c2;
 	color: #fff;
 	text-align: center;
-	padding: 10px 8px 0;
+	padding: 30px 8px 0;
 	font-size: 26px;
 }
 #article-content,#art-operation{
@@ -47,13 +47,8 @@
 	height: 64px;
 }
 .show-user-img{
-	float: left;
-	width: 64px;
-	display: inherit;
+	display: table-cell;
     vertical-align: top;
-}
-.margin-80{
-	margin-left: 80px;
 }
 
 @media (max-width: 920px) {
@@ -63,11 +58,9 @@
 	padding: 10px;
 	overflow: hidden;
 }
-.show-user-img{
-	display: none;
-}
-.margin-80{
-	margin-left: 0;
+
+#cc-mobile-header{
+	padding: 10px 8px 0;
 }
 
 }

@@ -1,0 +1,60 @@
+.persoanl-edit{
+	width: 80%;
+	height: 500px;
+	padding: 40px 20px;
+	margin: 0 auto;
+}
+.avatar{
+	width: 30%;
+	text-align: center;
+	float: left;
+}
+.avatar>img{
+	width: 150px;
+	border-radius: 100px;
+}
+.avatar>div>button{
+	margin-top: 10px;
+}
+.persoanl-info{
+	width: 70%;
+	float: left;
+}
+
+@media (max-width: 800px) {
+.persoanl-edit{
+	width: 100%;
+	height: 650px;
+	padding: 40px 20px;
+	margin: 0 auto;
+}
+.avatar{
+	width: 100%;
+	text-align: center;
+}
+.avatar>img{
+	width: 150px;
+	border-radius: 100px;
+}
+.avatar>div>button{
+	margin-top: 10px;
+}
+.persoanl-info{
+	width: 100%;
+}
+
+
+}
+
+@media (max-width:1330px ) {
+
+}
+@media (max-width:1000px ) {
+
+
+}
+
+@media (max-width:950px ) {
+
+}
+
