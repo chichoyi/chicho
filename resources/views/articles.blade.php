@@ -1,7 +1,7 @@
 @extends('layouts.chicho-app')
 
 @section('child-css')
-    <link href="{{ asset('css/blog.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/articles.css') }}" rel="stylesheet">
 @endsection
 
 @section('banner')
@@ -18,10 +18,10 @@
 
         <div class="article-item">
             <div class="a-img">
-                <a href="#"><img src="https://pigjian.com/storage/post_img/2017-04-12/follow-vote.png" alt=""></a>
+                <a href="{{ url('article/1') }}"><img src="https://pigjian.com/storage/post_img/2017-04-12/follow-vote.png" alt=""></a>
             </div>
             <div class="article-intr">
-                <a href="#" class="intr-a"><div class="main-title">Vue 组件 — V - TextcompleteVueTextcompleteVue 组件</div></a>
+                <a href="{{ url('article/1') }}" class="intr-a"><div class="main-title">Vue 组件 — V - TextcompleteVueTextcompleteVue 组件</div></a>
                 <div class="art-describe">Vue 组件 — V - TextcompleteVue 组件 — V - TextcompleteVue 组件 — V - TextcompleteVue 组件 — V - TextcompleteVue 组件 — V - TextcompleteVue 组件 — V - Textcomplete</div>
                 <div class="art-tags">
                     <a href="#" class="tag-a"><div class="tag-item">
@@ -182,5 +182,18 @@
         </div>
 
     </div>
+
+    <div class="pages">
+        <ul class="pagination">
+            <li><a href="#">&laquo;</a></li>
+            <li><a href="#">1</a></li>
+            <li><a href="#">2</a></li>
+            <li><a href="#">3</a></li>
+            <li><a href="#">4</a></li>
+            <li><a href="#">5</a></li>
+            <li><a href="#">&raquo;</a></li>
+        </ul>
+    </div>
+
 @endsection
 

@@ -26,10 +26,10 @@
     <div id="blog-header">
         <div id="blog-nav">
             <div id="left-nav">
-                <div class="item-nav"><a href="{{ url('/blog') }}">首页</a></div>
-                <div class="item-nav"><a href="{{ url('/article') }}">文章</a></div>
-                <div class="item-nav"><a href="{{ url('/personal') }}">标签</a></div>
-                <div class="item-nav"><a href="{{ url('/donate') }}">分享</a></div>
+                <div class="item-nav"><a href="{{ url('/') }}">首页</a></div>
+                <div class="item-nav"><a href="{{ url('articles') }}">文章</a></div>
+                <div class="item-nav"><a href="#">标签</a></div>
+                <div class="item-nav"><a href="{{ url('/donate') }}">打赏</a></div>
             </div>
             <div id="right-nav">
                 <div class="item-nav"><a href="{{ url('/register') }}">注册</a></div>
@@ -53,10 +53,10 @@
             </div>
             <div class="collapse navbar-collapse" id="chicho-navbar-collapse">
                 <ul class="nav navbar-nav">
-                    <li><a href="{{ url('/blog') }}" style="color: #fff;">首页</a></li>
-                    <li><a href="{{ url('/article') }}" style="color: #fff;">文章</a></li>
+                    <li><a href="{{ url('/') }}" style="color: #fff;">首页</a></li>
+                    <li><a href="{{ url('/articles') }}" style="color: #fff;">文章</a></li>
                     <li><a href="{{ url('/personal') }}" style="color: #fff;">生活分享 </a></li>
-                    <li><a href="{{ url('/donate') }}" style="color: #fff;">分享 </a></li>
+                    <li><a href="{{ url('/donate') }}" style="color: #fff;">打赏 </a></li>
                     <li><a href="{{ url('/login') }}" style="color: #fff;">登录 </a></li>
                     <li><a href="{{ url('/register') }}" style="color: #fff;">注册 </a></li>
                 </ul>

@@ -22,12 +22,12 @@
         There never a decline in full bloom of a blue lotus.
     </div>
     <div id="nav">
-        <a href="{{ route('blog') }}">Blog</a>
-        <a href="http://www.baidu.com">Share</a>
-        <a href="http://www.baidu.com">Me</a>
-        <a href="http://www.baidu.com">Github</a>
-        <a href="http://www.baidu.com">Tools</a>
-        <a href="http://www.baidu.com">Donate</a>
+        <a href="{{ url('articles') }}">articles</a>
+        <a href="#">Share</a>
+        <a href="#">Me</a>
+        <a href="#">Github</a>
+        <a href="{{ url('tools') }}">Tools</a>
+        <a href="{{ url('donate') }}">Donate</a>
     </div>
 </div>
 

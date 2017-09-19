@@ -1,40 +1,26 @@
 <?php
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
-Route::get('/', function () {
-    return view('show');
-});
-
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
-Route::post('get_data', 'SpiderController@getJinData')->name('get_data');
+Route::get('/', 'IndexController@index');
 
-Route::get('chicho', function (){
-    return view('chicho');
+Route::get('articles', 'IndexController@articles');
+Route::get('article/{id}', 'IndexController@info')->where('id', '[0-9]+');
+Route::get('donate', 'IndexController@donate');
+
+Route::get('/home', 'HomeController@index')->name('home');
+Route::group(['middleware'=>['auth']],function() {
+    Route::get('edit', 'UserController@edit');
+    Route::get('personal', 'UserController@personal');
+
+    Route::get('tools', 'ToolsController@tools');
+    Route::post('get_data', 'SpiderController@getJinData')->name('get_data');
 });
-Route::get('blog', function (){
-    return view('blog');
-})->name('blog');
-Route::get('article', function (){
-    return view('article');
-})->name('article');
-Route::get('donate', function (){
-    return view('donate');
-})->name('donate');
-Route::get('edit', function (){
-    return view('edit_personal');
-})->name('edit');
-Route::get('personal', function (){
-    return view('personal');
-})->name('personal');
+
+Route::group(['prefix' => 'admin' , 'namespace' => 'Admin'],function(){
+    Route::get('/', 'IndexController@index');
+    Route::get('article', 'ArticleController@index');
+    Route::get('edit_article', 'ArticleController@edit');
+});
+
+
+
