@@ -16,7 +16,8 @@ Route::group(['middleware'=>['auth']],function() {
     Route::post('get_data', 'SpiderController@getJinData')->name('get_data');
 });
 
-Route::group(['prefix' => 'admin' , 'namespace' => 'Admin'],function(){
+Route::get('admin/login', 'Admin\IndexController@login');
+Route::group(['prefix' => 'admin' , 'namespace' => 'Admin','middleware'=>['auth.admin']],function(){
     Route::get('/', 'IndexController@index');
     Route::get('article', 'ArticleController@index');
     Route::get('edit_article', 'ArticleController@edit');

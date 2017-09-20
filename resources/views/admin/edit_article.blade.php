@@ -5,6 +5,8 @@
     <script src="{{ asset('js/marked.js') }}"></script>
     <script src="{{ asset('js/ace/ace.js') }}"></script>
     <link href="{{ asset('css/markdown.css') }}" rel="stylesheet" >
+    <script src="{{ asset('js/bootstrap-select.min.js') }}"></script>
+    <link rel="stylesheet" href="{{ asset('css/bootstrap-select.min.css') }}">
 @endsection
 
 @section('breadcrumb')
@@ -47,7 +49,16 @@
 
                 <input type="text" name="description" class="form-control pull-left" id="description" placeholder="请输入文章描述">
 
-                <input type="text" name="tags" class="form-control pull-left" id="article-tag" placeholder="请输入文章标签，多个请用逗号隔开">
+                <div class="col-lg-10 pull-left" id="article-tag" style="padding: 0;">
+                    <select id="maxOption5" name="tags" class="selectpicker show-menu-arrow form-control" multiple data-max-options="5" title="请选择标签">
+                        <option>chicken</option>
+                        <option>turkey</option>
+                        <option>duck</option>
+                        <option>goose1</option>
+                        <option>goose2</option>
+                        <option>goose3</option>
+                    </select>
+                </div>
 
             </div>
 
@@ -85,17 +96,15 @@
         });
 
         $('#article-submit-m').click(function(event){
-            event.preventDefault();
-            $('#article-content').val(marked(acen_edit.getValue()));
             validator();
         });
         $('#article-submit').click(function(event){
-            event.preventDefault();
-            $('#article-content').val(marked(acen_edit.getValue()));
             validator();
         });
 
         function validator(){
+            event.preventDefault();
+            $('#article-content').val(marked(acen_edit.getValue()));
 
             $('#alert-tip').css('display','block');
 
@@ -112,7 +121,7 @@
                 $('.sub-tip').text('温馨提示：请输入文章描述');
                 return false;
             }
-            if ($('#article-tag').val() == '') {
+            if ($('#maxOption5').val() == '') {
                 $('.sub-tip').text('温馨提示：请输入文章标签');
                 return false;
             }

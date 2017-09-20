@@ -43,16 +43,16 @@
 }
 #article-description{
 	width: 100%;
-	height: 30px;
+	height: 34px;
 }
 #description{
 	width: 50%;
-	height: 30px;
+	height: 34px;
 	border: none;
 }
 #article-tag{
 	width: 50%;
-	height: 30px;
+	height: 34px;
 	border: none;
 }
 #article-submit-m{
@@ -81,7 +81,7 @@
 
 #description,#article-tag{
 	width: 100%;
-	height: 30px;
+	height: 34px;
 	border: none;
 }
 

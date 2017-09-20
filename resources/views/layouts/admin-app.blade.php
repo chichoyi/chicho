@@ -27,26 +27,26 @@
 
     <div id="left-nav">
 
-        <a href="#" class="nav-a">
+        <a href="{{ url('admin') }}" class="nav-a">
             <div class="nav-item">
                 <span class="glyphicon glyphicon-th-list margin-right-10"></span>
-                我是导航
+                首页
                 <span class="glyphicon glyphicon-chevron-right set-right"></span>
             </div>
         </a>
 
-        <a href="#" class="nav-a">
+        <a href="{{ url('admin/edit_article') }}" class="nav-a">
             <div class="nav-item">
                 <span class="glyphicon glyphicon-th-list margin-right-10"></span>
-                我是导航
+                写文章
                 <span class="glyphicon glyphicon-chevron-right set-right"></span>
             </div>
         </a>
 
-        <a href="#" class="nav-a">
+        <a href="{{ url('admin/article') }}" class="nav-a">
             <div class="nav-item">
                 <span class="glyphicon glyphicon-th-list margin-right-10"></span>
-                我是导航
+                文章管理
                 <span class="glyphicon glyphicon-chevron-right set-right"></span>
             </div>
         </a>

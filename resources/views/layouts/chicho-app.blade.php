@@ -32,8 +32,20 @@
                 <div class="item-nav"><a href="{{ url('/donate') }}">打赏</a></div>
             </div>
             <div id="right-nav">
-                <div class="item-nav"><a href="{{ url('/register') }}">注册</a></div>
-                <div class="item-nav"><a href="{{ url('/login') }}">登录</a></div>
+                @if (Auth::guest())
+                    <div class="item-nav"><a href="{{ url('/register') }}">注册</a></div>
+                    <div class="item-nav"><a href="{{ url('/login') }}">登录</a></div>
+                @else
+
+                    <div class="item-nav"><a href="{{ route('logout') }}"
+                                             onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                            注销</a></div>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        {{ csrf_field() }}
+                    </form>
+                    <div class="item-nav"><a href="{{ url('/personal') }}">{{ Auth::user()->name }}</a></div>
+                @endif
                 <div class="search"><input type="text" placeholder="search"></div>
             </div>
         </div>

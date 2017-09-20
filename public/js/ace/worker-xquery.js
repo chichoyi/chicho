@@ -3118,7 +3118,7 @@ exports.StyleChecker = function (ast, source) {
   this.parse_start = function()
   {
     eventHandler.startNonterminal("start", e0);
-    lookahead1W(14);                // ModuleDecl | Annotation | OptionDecl | Operator | Variable | Tag | AttrTest |
+    lookahead1W(14);                // ModuleDecl | Annotation | OptionDecl | Operator | Variable | Tags | AttrTest |
     switch (l1)
     {
     case 58:                        // '<![CDATA['
@@ -3214,8 +3214,8 @@ exports.StyleChecker = function (ast, source) {
     case 8:                         // Variable
       shift(8);                     // Variable
       break;
-    case 9:                         // Tag
-      shift(9);                     // Tag
+    case 9:                         // Tags
+      shift(9);                     // Tags
       break;
     case 7:                         // Operator
       shift(7);                     // Operator
@@ -3262,14 +3262,14 @@ exports.StyleChecker = function (ast, source) {
   this.parse_TagContent = function()
   {
     eventHandler.startNonterminal("TagContent", e0);
-    lookahead1(11);                 // Tag | EndTag | PredefinedEntityRef | ElementContentChar | CharRef | EOF |
+    lookahead1(11);                 // Tags | EndTag | PredefinedEntityRef | ElementContentChar | CharRef | EOF |
     switch (l1)
     {
     case 25:                        // ElementContentChar
       shift(25);                    // ElementContentChar
       break;
-    case 9:                         // Tag
-      shift(9);                     // Tag
+    case 9:                         // Tags
+      shift(9);                     // Tags
       break;
     case 10:                        // EndTag
       shift(10);                    // EndTag
@@ -4578,7 +4578,7 @@ JSONiqTokenizer.TOKEN =
   "OptionDecl",
   "Operator",
   "Variable",
-  "Tag",
+  "Tags",
   "EndTag",
   "PragmaContents",
   "DirCommentContents",
@@ -4941,7 +4941,7 @@ JSONiqTokenizer.TOKEN =
   this.parse_start = function()
   {
     eventHandler.startNonterminal("start", e0);
-    lookahead1W(14);                // ModuleDecl | Annotation | OptionDecl | Operator | Variable | Tag | AttrTest |
+    lookahead1W(14);                // ModuleDecl | Annotation | OptionDecl | Operator | Variable | Tags | AttrTest |
     switch (l1)
     {
     case 55:                        // '<![CDATA['
@@ -5034,8 +5034,8 @@ JSONiqTokenizer.TOKEN =
     case 5:                         // Variable
       shift(5);                     // Variable
       break;
-    case 6:                         // Tag
-      shift(6);                     // Tag
+    case 6:                         // Tags
+      shift(6);                     // Tags
       break;
     case 4:                         // Operator
       shift(4);                     // Operator
@@ -5082,14 +5082,14 @@ JSONiqTokenizer.TOKEN =
   this.parse_TagContent = function()
   {
     eventHandler.startNonterminal("TagContent", e0);
-    lookahead1(11);                 // Tag | EndTag | PredefinedEntityRef | ElementContentChar | CharRef | EOF |
+    lookahead1(11);                 // Tags | EndTag | PredefinedEntityRef | ElementContentChar | CharRef | EOF |
     switch (l1)
     {
     case 23:                        // ElementContentChar
       shift(23);                    // ElementContentChar
       break;
-    case 6:                         // Tag
-      shift(6);                     // Tag
+    case 6:                         // Tags
+      shift(6);                     // Tags
       break;
     case 7:                         // EndTag
       shift(7);                     // EndTag
@@ -6398,7 +6398,7 @@ XQueryTokenizer.TOKEN =
   "OptionDecl",
   "Operator",
   "Variable",
-  "Tag",
+  "Tags",
   "EndTag",
   "PragmaContents",
   "DirCommentContents",
@@ -6710,7 +6710,7 @@ var Rules = {
         { name: 'EQName', token: function(val) { return keys.indexOf(val) !== -1 ? 'keyword' : 'support.function'; } },
         { name: n('('), token: 'lparen' },
         { name: n(')'), token: 'rparen' },
-        { name: 'Tag', token: 'meta.tag', next: function(stack){ stack.push('StartTag'); } },
+        { name: 'Tags', token: 'meta.tag', next: function(stack){ stack.push('StartTag'); } },
         { name: n('}'), token: 'text', next: function(stack){ if(stack.length > 1) { stack.pop(); } } },
         { name: n('{'), token: 'text', next: function(stack){ stack.push('start'); } } //, next: function(stack){ if(stack.length > 1) { stack.pop(); } } }
     ].concat(keywords),
@@ -6732,7 +6732,7 @@ var Rules = {
         { name: 'ElementContentChar', token: 'text' },
         { name: n('<![CDATA['), token: cdata, next: function(stack){ stack.push('CData'); } },
         { name: n('<!--'), token: xmlcomment, next: function(stack){ stack.push('XMLComment'); } },
-        { name: 'Tag', token: 'meta.tag', next: function(stack){ stack.push('StartTag'); } },
+        { name: 'Tags', token: 'meta.tag', next: function(stack){ stack.push('StartTag'); } },
         { name: 'PredefinedEntityRef', token: 'constant.language.escape' },
         { name: 'CharRef', token: 'constant.language.escape' },
         { name: n('{{'), token: 'text' },
@@ -6947,7 +6947,7 @@ var Rules = {
         { name: 'EQName', token: function(val) { return keys.indexOf(val) !== -1 ? 'keyword' : 'support.function'; } },
         { name: n('('), token: 'lparen' },
         { name: n(')'), token: 'rparen' },
-        { name: 'Tag', token: 'meta.tag', next: function(stack){ stack.push('StartTag'); } },
+        { name: 'Tags', token: 'meta.tag', next: function(stack){ stack.push('StartTag'); } },
         { name: n('}'), token: 'text', next: function(stack){ if(stack.length > 1) { stack.pop(); } } },
         { name: n('{'), token: 'text', next: function(stack){ stack.push('start'); } } //, next: function(stack){ if(stack.length > 1) { stack.pop(); } } }
     ].concat(keywords),
@@ -6969,7 +6969,7 @@ var Rules = {
         { name: 'ElementContentChar', token: 'text' },
         { name: n('<![CDATA['), token: cdata, next: function(stack){ stack.push('CData'); } },
         { name: n('<!--'), token: xmlcomment, next: function(stack){ stack.push('XMLComment'); } },
-        { name: 'Tag', token: 'meta.tag', next: function(stack){ stack.push('StartTag'); } },
+        { name: 'Tags', token: 'meta.tag', next: function(stack){ stack.push('StartTag'); } },
         { name: 'PredefinedEntityRef', token: 'constant.language.escape' },
         { name: 'CharRef', token: 'constant.language.escape' },
         { name: n('{{'), token: 'text' },

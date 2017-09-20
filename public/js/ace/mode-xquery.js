@@ -113,7 +113,7 @@ module.exports = (function outer (modules, cache, entry) {
   this.parse_start = function()
   {
     eventHandler.startNonterminal("start", e0);
-    lookahead1W(14);                // ModuleDecl | Annotation | OptionDecl | Operator | Variable | Tag | AttrTest |
+    lookahead1W(14);                // ModuleDecl | Annotation | OptionDecl | Operator | Variable | Tags | AttrTest |
     switch (l1)
     {
     case 55:                        // '<![CDATA['
@@ -206,8 +206,8 @@ module.exports = (function outer (modules, cache, entry) {
     case 5:                         // Variable
       shift(5);                     // Variable
       break;
-    case 6:                         // Tag
-      shift(6);                     // Tag
+    case 6:                         // Tags
+      shift(6);                     // Tags
       break;
     case 4:                         // Operator
       shift(4);                     // Operator
@@ -254,14 +254,14 @@ module.exports = (function outer (modules, cache, entry) {
   this.parse_TagContent = function()
   {
     eventHandler.startNonterminal("TagContent", e0);
-    lookahead1(11);                 // Tag | EndTag | PredefinedEntityRef | ElementContentChar | CharRef | EOF |
+    lookahead1(11);                 // Tags | EndTag | PredefinedEntityRef | ElementContentChar | CharRef | EOF |
     switch (l1)
     {
     case 23:                        // ElementContentChar
       shift(23);                    // ElementContentChar
       break;
-    case 6:                         // Tag
-      shift(6);                     // Tag
+    case 6:                         // Tags
+      shift(6);                     // Tags
       break;
     case 7:                         // EndTag
       shift(7);                     // EndTag
@@ -1570,7 +1570,7 @@ XQueryTokenizer.TOKEN =
   "OptionDecl",
   "Operator",
   "Variable",
-  "Tag",
+  "Tags",
   "EndTag",
   "PragmaContents",
   "DirCommentContents",
@@ -1984,7 +1984,7 @@ var Rules = {
         { name: 'EQName', token: function(val) { return keys.indexOf(val) !== -1 ? 'keyword' : 'support.function'; } },
         { name: n('('), token: 'lparen' },
         { name: n(')'), token: 'rparen' },
-        { name: 'Tag', token: 'meta.tag', next: function(stack){ stack.push('StartTag'); } },
+        { name: 'Tags', token: 'meta.tag', next: function(stack){ stack.push('StartTag'); } },
         { name: n('}'), token: 'text', next: function(stack){ if(stack.length > 1) { stack.pop(); } } },
         { name: n('{'), token: 'text', next: function(stack){ stack.push('start'); } } //, next: function(stack){ if(stack.length > 1) { stack.pop(); } } }
     ].concat(keywords),
@@ -2006,7 +2006,7 @@ var Rules = {
         { name: 'ElementContentChar', token: 'text' },
         { name: n('<![CDATA['), token: cdata, next: function(stack){ stack.push('CData'); } },
         { name: n('<!--'), token: xmlcomment, next: function(stack){ stack.push('XMLComment'); } },
-        { name: 'Tag', token: 'meta.tag', next: function(stack){ stack.push('StartTag'); } },
+        { name: 'Tags', token: 'meta.tag', next: function(stack){ stack.push('StartTag'); } },
         { name: 'PredefinedEntityRef', token: 'constant.language.escape' },
         { name: 'CharRef', token: 'constant.language.escape' },
         { name: n('{{'), token: 'text' },
