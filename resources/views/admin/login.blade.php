@@ -20,16 +20,34 @@
             <canvas id="demo-canvas" width="1600" height="696"></canvas>
             <div class="logo_box">
                 <h3>chicho-博客后台管理</h3>
-                <form action="#" name="f" method="post">
+                <form action="{{ url('admin/login') }}" id="login-form" method="post">
+                    {{ csrf_field() }}
                     <div class="input_outer">
                         <span class="u_user"></span>
-                        <input name="logname" class="text" style="color: #FFFFFF !important" type="text" placeholder="请输入账户">
+                        <input name="name" class="text" style="color: #FFFFFF !important"
+                               value="{{ old('name') }}@if (session('old_name')){{ session('old_name') }}@endif"
+                               type="text" placeholder="请输入用户名">
                     </div>
                     <div class="input_outer">
                         <span class="us_uer"></span>
-                        <input name="logpass" class="text" style="color: #FFFFFF !important; position:absolute; z-index:100;" value="" type="password" placeholder="请输入密码">
+                        <input name="password" class="text" style="color: #FFFFFF !important; position:absolute; z-index:100;" value="" type="password" placeholder="请输入密码">
                     </div>
-                    <div class="mb2"><a class="act-but submit" href="javascript:;" style="color: #FFFFFF">登录</a></div>
+                    @if ($errors->has('name') || $errors->has('password') )
+                        <div style="width: 100%;color: red;margin-bottom: 30px;text-align: center;">
+                            {{ $errors->first('name') }}
+                            {{ $errors->first('password') }}
+                        </div>
+                    @endif
+                    @if (session('error_tip'))
+                        <div style="width: 100%;color: red;margin-bottom: 30px;text-align: center;">
+                            {{ session('error_tip') }}
+                        </div>
+                    @endif
+
+                    <div class="mb2">
+                        <a class="act-but submit"  href="{{ url('admin/login') }}"
+                           onclick="event.preventDefault();document.getElementById('login-form').submit();" style="color: #FFFFFF">登录</a>
+                    </div>
                 </form>
             </div>
         </div>

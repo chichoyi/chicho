@@ -16,11 +16,13 @@ Route::group(['middleware'=>['auth']],function() {
     Route::post('get_data', 'SpiderController@getJinData')->name('get_data');
 });
 
-Route::get('admin/login', 'Admin\IndexController@login');
+Route::get('admin/login', 'Admin\LoginController@showLogin');
+Route::post('admin/login', 'Admin\LoginController@login');
 Route::group(['prefix' => 'admin' , 'namespace' => 'Admin','middleware'=>['auth.admin']],function(){
     Route::get('/', 'IndexController@index');
-    Route::get('article', 'ArticleController@index');
-    Route::get('edit_article', 'ArticleController@edit');
+    Route::get('/article', 'ArticleController@index');
+    Route::get('/edit_article', 'ArticleController@edit');
+    Route::post('/logout', 'LoginController@logout');
 });
 
 
