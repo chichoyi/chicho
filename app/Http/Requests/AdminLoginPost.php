@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class AdminLoginPost extends FormRequest
 {
@@ -26,7 +27,12 @@ class AdminLoginPost extends FormRequest
     public function rules()
     {
         $rule = [
-            'name' => 'required|exists:admins,name',
+            'name' => [
+                'required',
+                Rule::exists('users')->where(function ($query) {
+                    $query->where('type',1 );
+                }),
+            ],
             'password' => 'required',
         ];
         $actionName = $this->getAction();

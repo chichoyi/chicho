@@ -25,10 +25,17 @@
             </a> -->
             <strong class="sub-tip">温馨提示: 请输入文章标题</strong>
         </div>
+        @if (count($errors) > 0)
+            <div class="alert alert-warning margin-bottom-0" id="alert-tip">
+                <strong class="sub-tip">
+                    温馨提示:{{ $errors->first() }}
+                </strong>
+            </div>
+        @endif
 
 
-        <form action="#" id="article">
-
+        <form action="{{ url('admin/article') }}" method="post" enctype="multipart/form-data" id="article">
+            {{ csrf_field() }}
             <div id="article-info">
 
                 <button class="btn btn-default btn-block pull-right" id="article-submit-m" type="submit">保存</button>
@@ -37,8 +44,8 @@
 
                 <select name="cover" class="form-control pull-left" id="article-cover">
                     <option value="">请选择文章封面</option>
-                    <option value="1">这一张</option>
-                    <option value="1">这一张</option>
+                    <option value="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1156197173,470200848&fm=27&gp=0.jpg">这一张</option>
+                    <option value="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1156197173,470200848&fm=27&gp=0.jpg">这一张</option>
                 </select>
 
                 <button class="btn btn-default pull-right" id="article-submit" type="submit">保存</button>
@@ -50,19 +57,18 @@
                 <input type="text" name="description" class="form-control pull-left" id="description" placeholder="请输入文章描述">
 
                 <div class="col-lg-10 pull-left" id="article-tag" style="padding: 0;">
-                    <select id="maxOption5" name="tags" class="selectpicker show-menu-arrow form-control" multiple data-max-options="5" title="请选择标签">
-                        <option>chicken</option>
-                        <option>turkey</option>
-                        <option>duck</option>
-                        <option>goose1</option>
-                        <option>goose2</option>
-                        <option>goose3</option>
+                    <select id="maxOption5" name="tags[]" class="selectpicker show-menu-arrow form-control" multiple data-max-options="5" title="请选择标签">
+                        @if ($tags)
+                            @foreach ($tags as $tag)
+                                <option value="{{ $tag->id }}">{{ $tag->tag }}</option>
+                            @endforeach
+                         @endif
                     </select>
                 </div>
 
             </div>
 
-            <input type="text" name="article-content" id="article-content" hidden="hidden">
+            <input type="text" name="content" id="article-content" hidden="hidden">
 
             <div id='editor-column' class='pull-left'>
                 <div id='panel-editor'>
@@ -105,6 +111,7 @@
         function validator(){
             event.preventDefault();
             $('#article-content').val(marked(acen_edit.getValue()));
+
 
             $('#alert-tip').css('display','block');
 

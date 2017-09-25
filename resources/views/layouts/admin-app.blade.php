@@ -51,6 +51,38 @@
             </div>
         </a>
 
+        <a href="{{ url('admin/images') }}" class="nav-a">
+            <div class="nav-item">
+                <span class="glyphicon glyphicon-th-list margin-right-10"></span>
+                图片管理
+                <span class="glyphicon glyphicon-chevron-right set-right"></span>
+            </div>
+        </a>
+
+        <a href="{{ url('admin/upload_image') }}" class="nav-a">
+            <div class="nav-item">
+                <span class="glyphicon glyphicon-th-list margin-right-10"></span>
+                上传图片
+                <span class="glyphicon glyphicon-chevron-right set-right"></span>
+            </div>
+        </a>
+
+        <a href="{{ url('admin/tags') }}" class="nav-a">
+            <div class="nav-item">
+                <span class="glyphicon glyphicon-th-list margin-right-10"></span>
+                标签管理
+                <span class="glyphicon glyphicon-chevron-right set-right"></span>
+            </div>
+        </a>
+
+        <a href="{{ url('admin/edit_tag') }}" class="nav-a">
+            <div class="nav-item">
+                <span class="glyphicon glyphicon-th-list margin-right-10"></span>
+                编辑标签
+                <span class="glyphicon glyphicon-chevron-right set-right"></span>
+            </div>
+        </a>
+
     </div>
 
 </div>

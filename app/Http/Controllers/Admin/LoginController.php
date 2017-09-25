@@ -31,7 +31,7 @@ class LoginController extends Controller
         $name = $request->input('name');
         $pwd = $request->input('password');
         if (Auth::guard('admin')->attempt(['name'=>$name,'password'=>$pwd])){
-            return redirect('admin/');
+            return redirect('admin');
         }else{
             return redirect('admin/login')
                 ->with('error_tip','账号或密码错误')
