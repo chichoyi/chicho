@@ -179,6 +179,8 @@ return [
         Barryvdh\Debugbar\ServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
 
+        Jacobcyl\AliOSS\AliOssServiceProvider::class,
+
     ],
 
     /*

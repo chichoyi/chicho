@@ -45,8 +45,7 @@
                     @endif
 
                     <div class="mb2">
-                        <a class="act-but submit"  href="{{ url('admin/login') }}"
-                           onclick="event.preventDefault();document.getElementById('login-form').submit();" style="color: #FFFFFF">登录</a>
+                        <a class="act-but submit" id="sb-bt"  href="{{ url('admin/login') }}" style="color: #FFFFFF">登录</a>
                     </div>
                 </form>
             </div>
@@ -57,5 +56,21 @@
 <script src="{{ asset('js/EasePack.min.js') }}"></script>
 <script src="{{ asset('js/rAF.js') }}"></script>
 <script src="{{ asset('js/demo-1.js') }}"></script>
+
+<script src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
+<script>
+    $('#sb-bt').click(function () {
+        $('#sb-bt').text('登录中...');
+        event.preventDefault();
+        document.getElementById('login-form').submit();
+    });
+    function modifyLoginText(if_open) {
+        if (if_open){
+            $('#sb-bt').text('登录中...');
+        }else{
+            $('#sb-bt').text('登录');
+        }
+    }
+</script>
 
 </body></html>

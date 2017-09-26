@@ -11,7 +11,8 @@
         "laravel/tinker": "~1.0",
         "guzzlehttp/guzzle": "~6.0",
         "maatwebsite/excel": "~2.1.0",
-        "aliyuncs/aliyun-oss-php-sdk-laravel": "~1.2.0"
+        "aliyuncs/oss-sdk-php": "^2.2",
+        "jacobcyl/ali-oss-storage": "dev-master"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

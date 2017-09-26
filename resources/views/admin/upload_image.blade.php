@@ -35,6 +35,11 @@
                         </div>
                     </div>
                 </div>
+                @if (session('error_tip'))
+                    <div style="color: red;margin-bottom: 30px;">
+                        {{ session('error_tip') }}
+                    </div>
+                @endif
                 <button type="submit" id="uploadSubmi1t" class="btn btn-info">提交</button>
             </form>
         </div>

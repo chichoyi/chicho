@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'default' => env('FILESYSTEM_DRIVER', 'local'),
+    'default' => env('FILESYSTEM_DRIVER', 'oss'),
 
     /*
     |--------------------------------------------------------------------------
@@ -62,6 +62,16 @@ return [
             'region' => env('AWS_REGION'),
             'bucket' => env('AWS_BUCKET'),
         ],
+
+        'oss' => [
+            'driver'        => 'oss',
+            'access_id'     => env('OSS_ID', 'id'),
+            'access_key'    => env('OSS_KEY', 'key'),
+            'bucket'        => env('OSS_BUCKET', 'bucket'),
+            'endpoint'      => env('OSS_ENDPOINT', 'endpoint'),
+            'isCName'       => true,
+            'debug'         => true
+        ]
 
     ],
 
