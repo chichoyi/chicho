@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>login</title>
+    <link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet" >
     <link rel="stylesheet" type="text/css" href="{{ asset('css/normalize.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/demo.css') }}">
     <!--必要样式-->
@@ -14,7 +15,16 @@
     <![endif]-->
 </head>
 <body>
-<div class="container demo-1">
+{{-- 提示框 --}}
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="width: 200px;text-align: center;">
+        <div class="modal-content">
+            <div class="modal-body" id="show_tip">按下 ESC 按钮退出。</div>
+        </div>
+    </div>
+</div>
+
+<div class="demo-1">
     <div class="content">
         <div id="large-header" class="large-header" style="height: 696px;">
             <canvas id="demo-canvas" width="1600" height="696"></canvas>
@@ -45,7 +55,7 @@
                     @endif
 
                     <div class="mb2">
-                        <a class="act-but submit" id="sb-bt"  href="{{ url('admin/login') }}" style="color: #FFFFFF">登录</a>
+                        <a class="act-but submit" id="sb-bt"   style="color: #FFFFFF">登录</a>
                     </div>
                 </form>
             </div>
@@ -58,19 +68,19 @@
 <script src="{{ asset('js/demo-1.js') }}"></script>
 
 <script src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
+<script src="{{ asset('js/bootstrap.js') }}"></script>
+<script src="{{ asset('js/common.js') }}"></script>
+
 <script>
     $('#sb-bt').click(function () {
-        $('#sb-bt').text('登录中...');
-        event.preventDefault();
-        document.getElementById('login-form').submit();
+        $(this).text('登录中...');
+        var url = 'admin/login';
+        var data = $("#login-form").serialize();
+        ajaxRequest(url,data);
+        $('#sb-bt').text('登录');
+
     });
-    function modifyLoginText(if_open) {
-        if (if_open){
-            $('#sb-bt').text('登录中...');
-        }else{
-            $('#sb-bt').text('登录');
-        }
-    }
+
 </script>
 
 </body></html>

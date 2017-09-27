@@ -7,16 +7,16 @@ function ajaxRequest(url,data,method) {
         alert("请求地址不得为空，请检查");
         return false;
     }
-    if (!isJSON(data)){
+    /*if (!isJSON(data)){
         alert("请传json对象，请检查");
         return false;
-    }
+    }*/
     $.ajax({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
         type: method ? method : 'POST',
-        url: url,
+        url: "http://"+document.domain+"/"+url,
         data: data,
         success: function (ret_data) {
             ret_data = eval('('+ ret_data +')');
@@ -65,12 +65,17 @@ function isJSON(str) {
 
 function ccTip(msg, myUrl) {
     $('#show_tip').text(msg);
-
     $('#myModal').modal('show');
+
+    if (myUrl !== undefined && myUrl !== ''){
+        $('#myModal').on('hidden.bs.modal', function () {
+            window.location.href="http://"+document.domain+"/"+myUrl;
+        });
+    }
 
     window.setTimeout(function(){
         $('#myModal').modal('hide');
-        if (myUrl !== undefined){
+        if (myUrl !== undefined && myUrl !== ''){
             $('#myModal').on('hidden.bs.modal', function () {
                 window.location.href="http://"+document.domain+"/"+myUrl;
             });
@@ -78,6 +83,7 @@ function ccTip(msg, myUrl) {
     },3000);
 
 }
+
 
 function errorTip(msg){
     $('#show_tip').text(msg);

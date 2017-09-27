@@ -113,13 +113,11 @@
             <div id="right-nav">
                 @if (Auth::guard('admin')->check())
 
-                <div class="item-nav"><a href="#"
-                                         onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">注销</a></div>
+                <div class="item-nav"><a href="javascript:" onclick="ajaxRequest('admin/logout',$('#login-form').serialize());">注销</a></div>
                 <form id="logout-form" action="{{ url('admin/logout') }}" method="POST" style="display: none;">
                      {{ csrf_field() }}
                 </form>
-                <div class="item-nav"><a href="#">{{ Auth::guard('admin')->user()->name }}</a></div>
+                <div class="item-nav"><a href="javascript:">{{ Auth::guard('admin')->user()->name }}</a></div>
                 <div class="search"><input type="text" placeholder="search"></div>
                 @endif
             </div>

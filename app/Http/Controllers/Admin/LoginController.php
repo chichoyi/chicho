@@ -31,11 +31,9 @@ class LoginController extends Controller
         $name = $request->input('name');
         $pwd = $request->input('password');
         if (Auth::guard('admin')->attempt(['name'=>$name,'password'=>$pwd])){
-            return redirect('admin');
+            return success(20102,'admin');
         }else{
-            return redirect('admin/login')
-                ->with('error_tip','账号或密码错误')
-                ->with('old_name',$name);
+            return error(50106);
         }
     }
 
@@ -43,7 +41,7 @@ class LoginController extends Controller
     {
         Auth::guard('admin')->logout();
         $request->session()->invalidate();
-        return redirect('admin/login');
+        return success(20000,'admin');
     }
 
 
