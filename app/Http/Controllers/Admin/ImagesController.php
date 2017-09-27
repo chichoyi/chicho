@@ -26,20 +26,16 @@ class ImagesController extends Controller
         foreach ($format as $f){
             $store_path .= '/'.date($f, $_SERVER['REQUEST_TIME']);
         }
-        $file_name = md5_file($img->getRealPath()).rand(1,999).'.'.$img->guessExtension();
-        $response = $img->storeAs($store_path, $file_name);
+        $response = $img->storeAs($store_path, file_upload_name($img));
         if ($response){
             $result = Images::add([
                 'url'=>$response
             ]);
             if ($result){
-                //成功
-                return redirect('admin/images');
+                return success(20007,"admin/images");
             }
         }
-        //失败
-        return redirect('admin/upload_image')
-            ->with('error_tip','上传失败');
+        return error(5007);
     }
 
 }

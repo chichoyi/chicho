@@ -16,7 +16,7 @@
     <div class="container" style="width: auto;">
         <div class="page-header">
             <h3>图片上传</h3>
-            <form action="{{ url('admin/upload_image') }}" method="post" enctype="multipart/form-data">
+            <form action="{{ url('admin/upload_image') }}" id="img_form" method="post" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <div class="form-group" id="uploadForm" enctype="multipart/form-data">
                     <div class="h4">图片预览</div>
@@ -40,42 +40,50 @@
                         {{ session('error_tip') }}
                     </div>
                 @endif
-                <button type="submit" id="uploadSubmi1t" class="btn btn-info">提交</button>
+                <button type="button" id="uploadSubmi1t" class="btn btn-info">提交</button>
             </form>
         </div>
     </div>
     <script src="{{ asset('js/bootstrap-fileinput.js') }}"></script>
-    <script type="text/javascript">
-        $(function () {
-            //比较简洁，细节可自行完善
-            $('#uploadSubmit').click(function () {
-                var data = new FormData($('#uploadForm'));
-                console.log(data);
-                /*$.ajax({
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    },
-                    url: '{{ url('admin/upload_image') }}',
-                    type: 'POST',
-                    data: data,
-                    async: false,
-                    cache: false,
-                    contentType: false,
-                    processData: false,
-                    success: function (data) {
-                        console.log(data);
-                        if(data.status){
-                            console.log('upload success');
-                        }else{
-                            console.log(data.message);
-                        }
-                    },
-                    error: function (data) {
-                        console.log(data.status);
+    <script>
+        $('#uploadSubmi1t').click(function () {
+            $(this).text('提交中...');
+            var formdata = new FormData($('#img_form')[0]);
+
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                type: 'POST',
+                url: 'upload_image',
+                data: formdata,
+                processData: false, //告诉jquery不要发送数据
+                contentType: false, //不要射中content-type
+                success: function (ret_data) {
+                    ret_data = eval('('+ ret_data +')');
+                    //console.log(ret_data['retUrl']);
+                    if (ret_data['retCode'] == 0){
+                        ccTip(ret_data['retMsg'], ret_data['retUrl']);
+                    }else{
+                        ccTip(ret_data['retMsg'], ret_data['retUrl']);
                     }
-                });*/
+                } ,
+                error:function (xhr) {
+                    $(this).text('提交');
+                    var response = xhr.responseText;
+                    var retObject = eval('('+ response +')');
+
+                    var error_msg = new Array();
+                    var j = 0;
+                    for (var i in retObject)
+                    {
+                        error_msg[j] = retObject[i][0];
+                        j++;
+                    }
+                    errorTip(error_msg[0]);
+                }
             });
 
-        })
+        });
     </script>
 @endsection

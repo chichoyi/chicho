@@ -20,6 +20,7 @@ Route::get('admin/login', 'Admin\LoginController@showLogin');
 Route::post('admin/login', 'Admin\LoginController@login');
 Route::group(['prefix' => 'admin' , 'namespace' => 'Admin','middleware'=>['auth.admin']],function(){
     Route::get('/', 'IndexController@index');
+    Route::post('/ajax_ret', 'IndexController@ajaxRet');
     Route::get('/article', 'ArticleController@index');
     Route::get('/edit_article', 'ArticleController@edit');
     Route::post('/article', 'ArticleController@add');

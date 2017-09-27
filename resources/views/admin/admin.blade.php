@@ -10,6 +10,18 @@
 
 @section('content')
     <div id="content">
-        我是首页哦
+        <button type="button" id="test">点击ajax测试</button>
     </div>
+    <script>
+        $('#test').click(function () {
+            var data = {
+                phone:"1382343090",
+                name:"chicho"
+            };
+            var url = 'admin/ajax_ret';
+            ajaxRequest(url,data);
+
+            //url    admin/ajax_ret   post
+        });
+    </script>
 @endsection

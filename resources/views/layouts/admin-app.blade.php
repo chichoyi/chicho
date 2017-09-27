@@ -14,9 +14,21 @@
     <link href="{{ asset('css/admin_common.css') }}" rel="stylesheet">
     <script src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
     <script src="{{ asset('js/bootstrap.js') }}"></script>
+
+    <script src="{{ asset('js/common.js') }}"></script>
+
+
     @yield('child-css-js')
 </head>
 <body>
+{{-- 提示框 --}}
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="width: 200px;text-align: center;">
+        <div class="modal-content">
+            <div class="modal-body" id="show_tip">按下 ESC 按钮退出。</div>
+        </div>
+    </div>
+</div>
 
 
 <div id="container-left">

@@ -34,6 +34,7 @@ class ArticlePost extends FormRequest
         ];
         $method = $this->getAction();
         if ($method == 'article') return $rule;
+        if ($method == 'article') return $rule;
 
 
         return [];
