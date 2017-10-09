@@ -14,7 +14,7 @@ trait Common
         }
     }
 
-    public static function getByFeild(array $where){
+    public static function getByFeild(array $where = []){
         if ($result = static::where($where)->get()){
             return $result;
         }else{

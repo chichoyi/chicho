@@ -13,67 +13,78 @@
 @endsection
 
 @section('content')
+
     <div class="container" style="margin-bottom: 30px;">
 
         <div class="image-item">
             <div class="img-box">
-                <img src="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=1517415098,4061300270&fm=11&gp=0.jpg" alt="">
+                <img src="http://www.17sucai.com/preview/1/2015-10-16/ImageGridEffects/img/original/6.jpg" alt="">
             </div>
             <div class="img-operate">
-                <a href="#"><span class="glyphicon glyphicon-zoom-in pull-left operate"></span></a>
+                <a href="#" class="magnifier"><span class="glyphicon glyphicon-zoom-in pull-left operate"></span></a>
                 <a href="#"><span class="glyphicon glyphicon-trash pull-right operate"></span></a>
             </div>
         </div>
-
         <div class="image-item">
             <div class="img-box">
-                <img src="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=2537734184,1546216431&fm=11&gp=0.jpg" alt="">
+                <img src="http://www.17sucai.com/preview/1/2015-10-16/ImageGridEffects/img/original/6.jpg" alt="">
             </div>
             <div class="img-operate">
-                <a href="#"><span class="glyphicon glyphicon-zoom-in pull-left operate"></span></a>
+                <a href="#" class="magnifier"><span class="glyphicon glyphicon-zoom-in pull-left operate"></span></a>
                 <a href="#"><span class="glyphicon glyphicon-trash pull-right operate"></span></a>
             </div>
         </div>
-
-        <div class="image-item">
-            <div class="img-box">
-                <img src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2750694183,4138033973&fm=200&gp=0.jpg" alt="">
-            </div>
-            <div class="img-operate">
-                <a href="#"><span class="glyphicon glyphicon-zoom-in pull-left operate"></span></a>
-                <a href="#"><span class="glyphicon glyphicon-trash pull-right operate"></span></a>
-            </div>
-        </div>
-
-        <div class="image-item">
-            <div class="img-box">
-                <img src="https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=1629491347,1018543730&fm=27&gp=0.jpg" alt="">
-            </div>
-            <div class="img-operate">
-                <a href="#"><span class="glyphicon glyphicon-zoom-in pull-left operate"></span></a>
-                <a href="#"><span class="glyphicon glyphicon-trash pull-right operate"></span></a>
-            </div>
-        </div>
-
-        <div class="image-item">
-            <div class="img-box">
-                <img src="https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=2205469800,1660046097&fm=27&gp=0.jpg" alt="">
-            </div>
-            <div class="img-operate">
-                <a href="#"><span class="glyphicon glyphicon-zoom-in pull-left operate"></span></a>
-                <a href="#"><span class="glyphicon glyphicon-trash pull-right operate"></span></a>
-            </div>
-        </div>
-
-        <div class="image-item">
-            <div class="img-box">
-                <img src="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1156197173,470200848&fm=27&gp=0.jpg" alt="">
-            </div>
-            <div class="img-operate">
-                <a href="#"><span class="glyphicon glyphicon-zoom-in pull-left operate"></span></a>
-                <a href="#"><span class="glyphicon glyphicon-trash pull-right operate"></span></a>
-            </div>
-        </div>
-
+        
     </div>
+
+@endsection
+
+@section('fill-script')
+<div id="show_img" onclick="$(this).fadeOut('slow');">
+    <div id="img_box">
+        <img id="is_img" src="" alt="">
+    </div>
+</div>
+
+<script>
+
+    $(document).ready(function(){
+        var ret_el = '';
+        $.get(handleUrl('admin/images_list'), '',
+            function(data){
+                var retData = handlRet(data);
+                var StrHtml = '';
+                $.each(retData.retData,function(index,item){
+                    StrHtml += "<div class='image-item'><div class='img-box'>" +
+                        "<img src='http://yinshan.oss-cn-shenzhen.aliyuncs.com/"+item.url +"' alt=''>" +
+                        "</div><div class='img-operate'><a href='#' class='magnifier'><span class='glyphicon glyphicon-zoom-in pull-left operate'>" +
+                        "</span></a><a href='#'><span class='glyphicon glyphicon-trash pull-right operate'></span></a></div></div>";
+                });
+                ret_el = $('.container').append(StrHtml);
+                magnifier();
+
+                if (StrHtml == ''){
+                    errorTip("没有图片");
+                    $('.container').append("没有图片");
+                }
+            }
+        );
+
+        function magnifier() {
+            $('.magnifier').on("click", function(){
+                var this_url = $(this).parent().parent().children().first().children().attr('src');
+                $('#is_img').attr("src",this_url);
+                $('body').attr('position','relative');
+                $('#show_img').css('width',document.documentElement.clientWidth +'px');
+                $('#show_img').css('height',document.documentElement.clientHeight+'px');
+                $('#img_box').css('line-height',document.documentElement.clientHeight+'px');
+                $('#show_img').fadeIn("slow");
+            });
+        }
+
+    });
+
+
+
+</script>
 @endsection

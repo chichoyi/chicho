@@ -19,6 +19,10 @@ class ImagesController extends Controller
         return view('admin.images');
     }
 
+    public function imagesList(){
+        return success_data(Images::getByFeild());
+    }
+
     public function upload(Request $request){
         $img = $request->file('cover');
         $format = explode('/', config('oss.oss_path_format'));

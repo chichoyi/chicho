@@ -25,6 +25,7 @@ Route::group(['prefix' => 'admin' , 'namespace' => 'Admin','middleware'=>['auth.
     Route::get('/edit_article', 'ArticleController@edit');
     Route::post('/article', 'ArticleController@add');
     Route::get('/images', 'ImagesController@images');
+    Route::get('/images_list', 'ImagesController@imagesList');
     Route::get('/upload_image', 'ImagesController@showUpload');
     Route::post('/upload_image', 'ImagesController@upload');
     Route::get('/tags', 'TagsController@tags');

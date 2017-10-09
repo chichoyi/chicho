@@ -23,7 +23,7 @@
 <body>
 {{-- 提示框 --}}
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog" style="width: 200px;text-align: center;">
+    <div class="modal-dialog" style="text-align: center;">
         <div class="modal-content">
             <div class="modal-body" id="show_tip">按下 ESC 按钮退出。</div>
         </div>

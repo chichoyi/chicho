@@ -17,7 +17,7 @@
 <body>
 {{-- 提示框 --}}
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog" style="width: 200px;text-align: center;">
+    <div class="modal-dialog" style="text-align: center;">
         <div class="modal-content">
             <div class="modal-body" id="show_tip">按下 ESC 按钮退出。</div>
         </div>
@@ -42,7 +42,7 @@
                         <span class="us_uer"></span>
                         <input name="password" class="text" style="color: #FFFFFF !important; position:absolute; z-index:100;" value="" type="password" placeholder="请输入密码">
                     </div>
-                    @if ($errors->has('name') || $errors->has('password') )
+                    {{--@if ($errors->has('name') || $errors->has('password') )
                         <div style="width: 100%;color: red;margin-bottom: 30px;text-align: center;">
                             {{ $errors->first('name') }}
                             {{ $errors->first('password') }}
@@ -52,7 +52,7 @@
                         <div style="width: 100%;color: red;margin-bottom: 30px;text-align: center;">
                             {{ session('error_tip') }}
                         </div>
-                    @endif
+                    @endif--}}
 
                     <div class="mb2">
                         <a class="act-but submit" id="sb-bt"   style="color: #FFFFFF">登录</a>
