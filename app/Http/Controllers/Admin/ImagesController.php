@@ -20,7 +20,7 @@ class ImagesController extends Controller
     }
 
     public function imagesList(){
-        return success_data(Images::getByFeild());
+        return success_data(Images::getByFeild(['is_used'=>1]));
     }
 
     public function upload(Request $request){
@@ -40,6 +40,15 @@ class ImagesController extends Controller
             }
         }
         return error(5007);
+    }
+
+    public function modifyTitle(Request $request){
+        $result = Images::where('id', $request->id)->update(['title'=>$request->title]);
+        if ($result){
+            return success(20004);
+        }else{
+            return error(50004);
+        }
     }
 
 }

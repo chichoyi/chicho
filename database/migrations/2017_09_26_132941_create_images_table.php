@@ -18,6 +18,8 @@ class CreateImagesTable extends Migration
             $table->string('url',100)->default('')->comment('图片地址');
             $table->string('title',100)->default('')->comment('图片标题');
             $table->string('description',200)->default('')->comment('图片描述');
+            $table->unsignedTinyInteger('is_used')->default(1)->comment('1-未使用 2-已经使用');
+            $table->unsignedTinyInteger('status')->default(1)->comment('0-删除 1-正常 2-停用');
             $table->timestamps();
         });
     }

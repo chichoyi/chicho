@@ -52,13 +52,12 @@ class ArticleController extends Controller
             $result_t = ArticleTags::insert($tags_data);
             if ($result_t) {
                 DB::commit();
-                return redirect('admin/article');
+                return success(20000, 'admin/article');
             }
         }
 
         DB::rollBack();
-        return redirect('admin/edit_article')
-                ->withErrors('添加文章失败');
+        return error(50000);
 
     }
 

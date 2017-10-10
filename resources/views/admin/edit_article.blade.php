@@ -38,7 +38,7 @@
             {{ csrf_field() }}
             <div id="article-info">
 
-                <button class="btn btn-default btn-block pull-right" id="article-submit-m" type="submit">保存</button>
+                <button class="btn btn-default btn-block pull-right" id="article-submit-m" type="button">保存</button>
 
                 <input type="text" name="title" class="form-control pull-left" id="article-title" placeholder="请输入文章标题">
 
@@ -48,7 +48,7 @@
                     <option value="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1156197173,470200848&fm=27&gp=0.jpg">这一张</option>
                 </select>
 
-                <button class="btn btn-default pull-right" id="article-submit" type="submit">保存</button>
+                <button class="btn btn-default pull-right" id="article-submit" type="button">保存</button>
 
             </div>
 
@@ -58,11 +58,7 @@
 
                 <div class="col-lg-10 pull-left" id="article-tag" style="padding: 0;">
                     <select id="maxOption5" name="tags[]" class="selectpicker show-menu-arrow form-control" multiple data-max-options="5" title="请选择标签">
-                        @if ($tags)
-                            @foreach ($tags as $tag)
-                                <option value="{{ $tag->id }}">{{ $tag->tag }}</option>
-                            @endforeach
-                         @endif
+
                     </select>
                 </div>
 
@@ -102,10 +98,17 @@
         });
 
         $('#article-submit-m').click(function(event){
-            validator();
+            if (validator()){
+                ajaxRequest('admin/article', $('#article').serialize());
+            }
+            return false;
+
         });
         $('#article-submit').click(function(event){
-            validator();
+            if (validator()){
+                ajaxRequest('admin/article', $('#article').serialize());
+            }
+            return false;
         });
 
         function validator(){
@@ -120,7 +123,6 @@
                 return false;
             }
             if ($('#article-cover').val() == '') {
-                console.log('is here');
                 $('.sub-tip').text('温馨提示：请选择文章封面');
                 return false;
             }
@@ -140,10 +142,37 @@
 
             $('#alert-tip').css('display','none');
 
-            $('#article').submit();
 
             return true;
 
         }
+
+
+        $(document).ready(function(){
+            //for covers
+            customAjaxRequest('admin/images_list', '', function (retData) {
+                var StrHtml = '';
+                $.each(retData.retData,function(index,item){
+                    StrHtml += "<option value='"+item.id +"'>"+item.title+"</option>";
+                });
+                $('#article-cover').append(StrHtml);
+            }, 'GET');
+
+            //for tags
+            customAjaxRequest('admin/tags_list', '', function (retData) {
+                var StrHtml = '';
+                var arr = new Array();
+                $.each(retData.retData,function(index,item){
+                    StrHtml += "<option value='"+item.id +"'>"+item.tag+"</option>";
+                    arr[index] = item.tag;
+                });
+
+                $('#maxOption5').append(StrHtml);
+                $('.selectpicker').selectpicker('val', arr);
+                $('.selectpicker').selectpicker('refresh');
+
+            }, 'GET');
+
+        })
     </script>
 @endsection

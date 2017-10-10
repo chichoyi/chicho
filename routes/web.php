@@ -28,7 +28,9 @@ Route::group(['prefix' => 'admin' , 'namespace' => 'Admin','middleware'=>['auth.
     Route::get('/images_list', 'ImagesController@imagesList');
     Route::get('/upload_image', 'ImagesController@showUpload');
     Route::post('/upload_image', 'ImagesController@upload');
+    Route::post('/modify_title', 'ImagesController@modifyTitle');
     Route::get('/tags', 'TagsController@tags');
+    Route::get('/tags_list', 'TagsController@tagsList');
     Route::get('/edit_tag', 'TagsController@showEdit');
     Route::post('/logout', 'LoginController@logout');
 });

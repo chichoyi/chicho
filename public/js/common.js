@@ -3,7 +3,7 @@
  */
 
 
-function ajaxRequest(url,data,method) {
+function ajaxRequest(url, data, succuss_cmd, error_cmd, method) {
     if (url == ''){
         alert("请求地址不得为空，请检查");
         return false;
@@ -26,6 +26,7 @@ function ajaxRequest(url,data,method) {
             }else{
                 ccTip(ret_data['retMsg'], ret_data['retUrl']);
             }
+            if(succuss_cmd) (succuss_cmd)();
         } ,
         error:function (xhr) {
             var response = xhr.responseText;
@@ -40,6 +41,37 @@ function ajaxRequest(url,data,method) {
             }
 
             errorTip(error_msg[0]);
+
+            if(error_cmd) (error_cmd)();
+
+        }
+    });
+}
+
+
+//自定义ajax返回
+function customAjaxRequest(url, data, succuss_cmd, method, error_cmd) {
+    if (url == ''){
+        alert("请求地址不得为空，请检查");
+        return false;
+    }
+    $.ajax({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        type: method ? method : 'POST',
+        url: "http://"+document.domain+"/"+url,
+        data: data,
+        success: function (ret_data) {
+            ret_data = eval('('+ ret_data +')');
+            if(succuss_cmd) (succuss_cmd)(ret_data);
+        } ,
+        error:function (xhr) {
+            if(error_cmd){
+                (error_cmd)(xhr);
+            }else{
+                errorTip("请求失败");
+            }
         }
     });
 }

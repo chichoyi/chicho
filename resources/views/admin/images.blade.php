@@ -18,19 +18,23 @@
 
         <div class="image-item">
             <div class="img-box">
-                <img src="http://www.17sucai.com/preview/1/2015-10-16/ImageGridEffects/img/original/6.jpg" alt="">
+                <img src="http://www.17sucai.com/preview/1/2015-10-16/ImageGridEffects/img/original/6.jpg" alt="图片图片">
+                <input type="hidden" id="title-3" data-title="图片图片3">
             </div>
             <div class="img-operate">
                 <a href="#" class="magnifier"><span class="glyphicon glyphicon-zoom-in pull-left operate"></span></a>
-                <a href="#"><span class="glyphicon glyphicon-trash pull-right operate"></span></a>
+                <a href='#' class='modifyTitle' data-id="15"><span class='glyphicon glyphicon-edit pull-left operate margin-10'></span></a>
+                <a href="#" ><span class="glyphicon glyphicon-trash pull-right operate"></span></a>
             </div>
         </div>
         <div class="image-item">
             <div class="img-box">
                 <img src="http://www.17sucai.com/preview/1/2015-10-16/ImageGridEffects/img/original/6.jpg" alt="">
+                <input type="hidden" id="title-2" data-title="图片图片2">
             </div>
             <div class="img-operate">
                 <a href="#" class="magnifier"><span class="glyphicon glyphicon-zoom-in pull-left operate"></span></a>
+                <a href='#' class='modifyTitle'><span class='glyphicon glyphicon-edit pull-left operate margin-10'></span></a>
                 <a href="#"><span class="glyphicon glyphicon-trash pull-right operate"></span></a>
             </div>
         </div>
@@ -46,6 +50,33 @@
     </div>
 </div>
 
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="modalForImg" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title" id="myModalLabel">修改图片标题</h4>
+            </div>
+            <div class="modal-body">
+                <form role="form" id="img-form">
+                    {{ csrf_field() }}
+                    <input type="hidden" name="id" id="img-id" value="">
+                    <div class="form-group">
+                        <label for="title">图片标题</label>
+                        <input type="text" class="form-control" id="title" name="title" placeholder="请输入标题">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary" id="submit">提交更改</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+
 <script>
 
     $(document).ready(function(){
@@ -56,12 +87,15 @@
                 var StrHtml = '';
                 $.each(retData.retData,function(index,item){
                     StrHtml += "<div class='image-item'><div class='img-box'>" +
-                        "<img src='http://yinshan.oss-cn-shenzhen.aliyuncs.com/"+item.url +"' alt=''>" +
+                        "<img src='http://yinshan.oss-cn-shenzhen.aliyuncs.com/"+item.url +"' alt='"+item.title+"'>" +
                         "</div><div class='img-operate'><a href='#' class='magnifier'><span class='glyphicon glyphicon-zoom-in pull-left operate'>" +
-                        "</span></a><a href='#'><span class='glyphicon glyphicon-trash pull-right operate'></span></a></div></div>";
+                        "</span></a><a href='#' class='modifyTitle' data-id='"+item.id+"'><span class='glyphicon glyphicon-edit pull-left operate margin-10'>" +
+                        "</span></a><a href='#'><span class='glyphicon glyphicon-trash pull-right operate'></span></a></div>" +
+                        "<input type='hidden' id='title-"+item.id+"' data-title='"+item.title+"'></div>";
                 });
                 ret_el = $('.container').append(StrHtml);
                 magnifier();
+                modifyTitle();
 
                 if (StrHtml == ''){
                     errorTip("没有图片");
@@ -81,6 +115,29 @@
                 $('#show_img').fadeIn("slow");
             });
         }
+        
+        function rmImg() {
+            
+        }
+        
+        function modifyTitle() {
+            $('.modifyTitle').on('click',function () {
+                $('#modalForImg').modal('show');
+                var imgId = $(this).attr('data-id');
+                $('#img-id').val(imgId);
+                var imgAlt = $('#title-'+imgId).attr('data-title');
+                $('#title').val(imgAlt);
+            });
+
+            $('#submit').on('click',function () {
+                $('#modalForImg').modal('hide');
+                ajaxRequest('admin/modify_title', $('#img-form').serialize(), function () {
+                    $('#title-' + $('#img-id').val()).attr('data-title', $('#title').val());
+                });
+            });
+
+        }
+
 
     });
 
