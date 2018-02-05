@@ -18,8 +18,7 @@ class CreateTagsTable extends Migration
             $table->string('tag',20)->default('')->comment('标签');
             $table->string('description',50)->default('')->comment('描述');
             $table->unsignedTinyInteger('status')->default(1)->comment('0-删除 1-正常 2-停用');
-            //$table->timestamps();记得在模型设置false
-            //tag,status,meta_description,title
+            $table->timestamps();
         });
     }
 

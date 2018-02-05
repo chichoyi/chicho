@@ -13,34 +13,9 @@
 @endsection
 
 @section('content')
-
     <div class="container" style="margin-bottom: 30px;">
 
-        <div class="image-item">
-            <div class="img-box">
-                <img src="http://www.17sucai.com/preview/1/2015-10-16/ImageGridEffects/img/original/6.jpg" alt="图片图片">
-                <input type="hidden" id="title-3" data-title="图片图片3">
-            </div>
-            <div class="img-operate">
-                <a href="#" class="magnifier"><span class="glyphicon glyphicon-zoom-in pull-left operate"></span></a>
-                <a href='#' class='modifyTitle' data-id="15"><span class='glyphicon glyphicon-edit pull-left operate margin-10'></span></a>
-                <a href="#" ><span class="glyphicon glyphicon-trash pull-right operate"></span></a>
-            </div>
-        </div>
-        <div class="image-item">
-            <div class="img-box">
-                <img src="http://www.17sucai.com/preview/1/2015-10-16/ImageGridEffects/img/original/6.jpg" alt="">
-                <input type="hidden" id="title-2" data-title="图片图片2">
-            </div>
-            <div class="img-operate">
-                <a href="#" class="magnifier"><span class="glyphicon glyphicon-zoom-in pull-left operate"></span></a>
-                <a href='#' class='modifyTitle'><span class='glyphicon glyphicon-edit pull-left operate margin-10'></span></a>
-                <a href="#"><span class="glyphicon glyphicon-trash pull-right operate"></span></a>
-            </div>
-        </div>
-        
     </div>
-
 @endsection
 
 @section('fill-script')

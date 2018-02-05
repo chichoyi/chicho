@@ -14,6 +14,20 @@ trait Common
         }
     }
 
+    /**
+     * @description 根据条件修改
+     * @author chicho
+     * @param array $where
+     * @param array $value
+     * @param string $status
+     * @return mixed
+     */
+    public static function putByField(array $where = [], array $value = [], $status = 'normal_status_arr'){
+        $self = static::setModel(static::getModel());
+        $self = self::handleWhere($self, $where);
+        $self = self::handlStatus($self, $status);
+        return $self->update($value);
+    }
 
     /**
      * @description 根据条件获取
@@ -41,10 +55,12 @@ trait Common
      * @param string $where_function
      * @return mixed
      */
-    public static function getList($perPage, $page, array $where = [], $column = ['*'], $status = 'normal_status', $where_function = 'where'){
+    public static function getList($perPage, $page, array $where = [], $column = ['*'], $join_table = [], $status = 'normal_status', $where_function = 'where'){
         $self = static::setModel(static::getModel());
         $self = self::handleWhere($self, $where);
         $self = self::handlStatus($self, $status);
+        if (!empty($join_table))
+            $self = $self->with($join_table);
         return $self->paginate($perPage, $column, 'page', $page);
     }
 

@@ -20,7 +20,6 @@
             <tr>
                 <th>标签</th>
                 <th>文章标题</th>
-                <th>状态</th>
                 <th>操作</th></tr>
             </thead>
             <tbody>
@@ -28,11 +27,27 @@
             @if ($articles)
                 @foreach ($articles as $article)
                     <tr>
-                        <td>{{ $article->title }}</td>
-                        <td><a href="#">{{ $article->title }}</a></td>
-                        <td>{{ $article->status }}</td>
                         <td>
-                            <button type="button" class="btn btn-info btn-xs">发布</button>
+                            @if ($article->article_tags)
+                                @foreach ($article->article_tags as $article_tag)
+                                    @if ($article_tag)
+                                        {{ $article_tag->tags->tag }}
+                                    @endif
+                                    @if (!$loop->last)
+                                        ,
+                                    @endif
+                                @endforeach
+                            @endif
+                        </td>
+                        <td><a href="#">{{ $article->title }}</a></td>
+                        <td>
+                            <button type="button" class="btn btn-info btn-xs publish" data-id="{{ $article->id }}" data-v="{{ $article->is_publish }}">
+                                @if ($article->is_publish == 0)
+                                    发布
+                                @else
+                                    取消发布
+                                @endif
+                            </button>
                         </td>
                     </tr>
                 @endforeach
@@ -46,15 +61,26 @@
 
     <div class="pages">
         {{ $articles->links() }}
-
-        {{--<ul class="pagination">
-            <li><a href="#">&laquo;</a></li>
-            <li><a href="#">1</a></li>
-            <li><a href="#">2</a></li>
-            <li><a href="#">3</a></li>
-            <li><a href="#">4</a></li>
-            <li><a href="#">5</a></li>
-            <li><a href="#">&raquo;</a></li>
-        </ul>--}}
     </div>
+@endsection
+
+@section('fill-script')
+    <script>
+        $('.publish').click(function(){
+            var optThis = $(this);
+            var is_publish = 1;
+            var show = '取消发布';
+            var data_v = 1;
+            if($(this).attr("data-v") == 1){
+                is_publish = 0;
+                data_v = 0;
+                show = '发布';
+            }
+            ajaxRequest('admin/is_publish/' + $(this).attr('data-id'), {is_publish:is_publish}, function(){
+                optThis.html(show);
+                optThis.attr("data-v", data_v);
+            });
+        });
+
+    </script>
 @endsection

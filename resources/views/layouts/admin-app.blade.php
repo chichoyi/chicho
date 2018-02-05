@@ -55,7 +55,7 @@
             </div>
         </a>
 
-        <a href="{{ url('admin/article') }}" class="nav-a">
+        <a href="{{ url('admin/articles') }}" class="nav-a">
             <div class="nav-item">
                 <span class="glyphicon glyphicon-th-list margin-right-10"></span>
                 文章管理

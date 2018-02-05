@@ -1,5 +1,5 @@
 /**
- * Created by Administrator on 2017/9/27.
+ * Created by chicho on 2017/9/27.
  */
 
 
@@ -21,12 +21,12 @@ function ajaxRequest(url, data, succuss_cmd, error_cmd, method) {
         data: data,
         success: function (ret_data) {
             ret_data = eval('('+ ret_data +')');
+            if(succuss_cmd) (succuss_cmd)();
             if (ret_data['retCode'] == 0){
                 ccTip(ret_data['retMsg'], ret_data['retUrl']);
             }else{
                 ccTip(ret_data['retMsg'], ret_data['retUrl']);
             }
-            if(succuss_cmd) (succuss_cmd)();
         } ,
         error:function (xhr) {
             var response = xhr.responseText;
@@ -49,7 +49,15 @@ function ajaxRequest(url, data, succuss_cmd, error_cmd, method) {
 }
 
 
-//自定义ajax返回
+/**
+ *  自定义ajax返回
+ * @param url
+ * @param data
+ * @param succuss_cmd
+ * @param method
+ * @param error_cmd
+ * @returns {boolean}
+ */
 function customAjaxRequest(url, data, succuss_cmd, method, error_cmd) {
     if (url == ''){
         alert("请求地址不得为空，请检查");

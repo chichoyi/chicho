@@ -16,7 +16,7 @@ class CreateArticleTable extends Migration
         Schema::create('article', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title',100)->default('')->comment('标题');
-            $table->string('cover_url',100)->default('')->comment('封面地址');
+            $table->string('images_id',100)->default('')->comment('封面地址');
             $table->string('description',100)->default('')->comment('描述');
             //$table->string('tags_id',100)->default('')->comment('标签id');
             $table->string('keywords',100)->default('')->comment('关键词');

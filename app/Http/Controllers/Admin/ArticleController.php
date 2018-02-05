@@ -14,17 +14,35 @@ use Illuminate\Support\Facades\DB;
 
 class ArticleController extends Controller
 {
-    public function index(){
-        $articles = Article::getList(config('system.perPage'), 1);
+    /**
+     * @description 文章列表
+     * @author chicho
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function articles(Request $request){
+        if (!$request->page) $request->page = 1;
+        $articles = Article::getList(config('system.perPage'), $request->page, [], ['*'], [
+            'article_tags' => function($q){
+                $q->with([
+                    'tags' =>function($q_t){
+                        $q_t->select('id', 'tag');
+                    }
+                ]);
+                $q->select('id', 'tags_id', 'article_id');
+            }
+        ]);
         return view('admin.article', [
             'articles' => $articles
         ]);
     }
 
+    /**
+     * @description 编辑文章页面
+     * @author chicho
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function edit(){
-        $tags = Tags::getList(config('system.perPage'), 1);
-        dd($tags->toArray());
-
+        $tags = Tags::getByFeild();
         return view('admin.edit_article',[
             'tags' => $tags
         ]);
@@ -47,11 +65,11 @@ class ArticleController extends Controller
         DB::beginTransaction();
 
         $result_a = Article::add([
-            'title'=>$title,
-            'cover_url'=>$cover,
-            'content'=>$content,
-            'description'=>$description,
-            'user_id'=>$user_id
+            'title' => $title,
+            'images_id' => $cover,
+            'content' => $content,
+            'description' => $description,
+            'user_id' => $user_id
         ]);
 
         foreach ($tags as $key => $value){
@@ -69,7 +87,21 @@ class ArticleController extends Controller
 
         DB::rollBack();
         return error(50000);
+    }
 
+    /**
+     * @description 是否发布文章
+     * @author chicho
+     * @param ArticlePost $request
+     * @param $id
+     * @return string
+     */
+    public function isPublish(ArticlePost $request, $id){
+        $is_publish = $request->is_publish;
+        if (Article::putByField(['id' => $id], ['is_publish' => $is_publish]))
+            return success(20000);
+        else
+            return error(50000);
     }
 
 }

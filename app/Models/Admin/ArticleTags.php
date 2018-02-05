@@ -14,4 +14,9 @@ class ArticleTags extends Model
     protected $table = 'article_tags';
 
     protected $fillable = ['article_id', 'tags_id'];
+
+    public function tags(){
+        return $this->belongsTo('App\Models\Tags');
+    }
+
 }
