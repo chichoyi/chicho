@@ -24,40 +24,30 @@
                 <th>操作</th></tr>
             </thead>
             <tbody>
-            <tr>
-                <td>docker</td>
-                <td><a href="#">docker配置</a></td>
-                <td>未发布</td>
-                <td>
-                    <button type="button" class="btn btn-info btn-xs">发布</button>
-                </td></tr>
-            <tr>
-                <td>docker-compose</td>
-                <td><a href="#">docker配置</a></td>
-                <td>已发布</td>
-                <td>
-                    <button type="button" class="btn btn-warning btn-xs">取消发布</button>
-                </td></tr>
-            <tr>
-                <td>compose</td>
-                <td><a href="#">docker配置</a></td>
-                <td>已发布</td>
-                <td>
-                    <button type="button" class="btn btn-warning btn-xs">取消发布</button>
-                </td></tr>
-            <tr>
-                <td>docker</td>
-                <td><a href="#">docker配置</a></td>
-                <td>未发布</td>
-                <td>
-                    <button type="button" class="btn btn-info btn-xs">发布</button>
-                </td></tr>
+
+            @if ($articles)
+                @foreach ($articles as $article)
+                    <tr>
+                        <td>{{ $article->title }}</td>
+                        <td><a href="#">{{ $article->title }}</a></td>
+                        <td>{{ $article->status }}</td>
+                        <td>
+                            <button type="button" class="btn btn-info btn-xs">发布</button>
+                        </td>
+                    </tr>
+                @endforeach
+            @endif
+
             </tbody>
         </table>
     </div>
 
+
+
     <div class="pages">
-        <ul class="pagination">
+        {{ $articles->links() }}
+
+        {{--<ul class="pagination">
             <li><a href="#">&laquo;</a></li>
             <li><a href="#">1</a></li>
             <li><a href="#">2</a></li>
@@ -65,6 +55,6 @@
             <li><a href="#">4</a></li>
             <li><a href="#">5</a></li>
             <li><a href="#">&raquo;</a></li>
-        </ul>
+        </ul>--}}
     </div>
 @endsection

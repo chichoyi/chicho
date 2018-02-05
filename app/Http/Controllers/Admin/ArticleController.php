@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Requests\Admin\ArticlePost;
 use App\Models\Admin\Article;
 use App\Models\Admin\ArticleTags;
+use App\Models\Images;
 use App\Models\Tags;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -14,16 +15,27 @@ use Illuminate\Support\Facades\DB;
 class ArticleController extends Controller
 {
     public function index(){
-        return view('admin.article');
-    }
-
-    public function edit(){
-        $tags = Tags::getByFeild(['status'=>1]);
-        return view('admin.edit_article',[
-            'tags'=>$tags
+        $articles = Article::getList(config('system.perPage'), 1);
+        return view('admin.article', [
+            'articles' => $articles
         ]);
     }
 
+    public function edit(){
+        $tags = Tags::getList(config('system.perPage'), 1);
+        dd($tags->toArray());
+
+        return view('admin.edit_article',[
+            'tags' => $tags
+        ]);
+    }
+
+    /**
+     * @description 添加文章
+     * @author chicho
+     * @param ArticlePost $request
+     * @return string
+     */
     public function add(ArticlePost $request){
         $tags = $request->input('tags');
         $content = $request->input('content');
@@ -48,7 +60,6 @@ class ArticleController extends Controller
         }
 
         if ($result_a){
-
             $result_t = ArticleTags::insert($tags_data);
             if ($result_t) {
                 DB::commit();
